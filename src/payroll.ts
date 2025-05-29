@@ -26,7 +26,6 @@ export function calculatePayslip(salary: Salary): Payslip {
   // TODO: implement
 
   const deductions: Deductions = new Map();
-  const ageAtPayday = 0;
   const monthlyGross = salary.gross;
   const yearlyGross = monthlyGross * 12;
   //AHV, IV und EO werden ab dem 1. Januar nach dem 17. Geburtstag abgezogen.
@@ -59,6 +58,8 @@ export function calculatePayslip(salary: Salary): Payslip {
   deductions.forEach((value) => {
     totalDeductions += value;
   });
+
+  const net = monthlyGross - totalDeductions;
 
   const result: Payslip = {
     salary: salary,
